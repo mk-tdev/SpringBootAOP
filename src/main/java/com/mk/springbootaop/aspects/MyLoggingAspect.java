@@ -2,6 +2,7 @@ package com.mk.springbootaop.aspects;
 
 import com.mk.springbootaop.model.Product;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -68,5 +69,21 @@ public class MyLoggingAspect {
     ) {
         System.out.println("Logging: After throwing product");
         System.out.println(theExc);
+    }
+
+    @Around("execution(* getSample*())")
+    public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("Logging: Before around product");
+        System.out.println(proceedingJoinPoint.getSignature().toShortString());
+
+        try {
+            Object result = proceedingJoinPoint.proceed();
+            System.out.println(result);
+        } catch(Exception ec) {
+            System.out.println("Exception: " + ec);
+        }
+
+
+        System.out.println("Logging: After around product");
     }
 }

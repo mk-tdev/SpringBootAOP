@@ -52,4 +52,16 @@ public class ProductDAOImpl implements ProductDAO {
 
         throw new RuntimeException("sample runtime exception");
     }
+
+    @Override
+    public Product getSampleProduct() {
+//        throw new RuntimeException("sample runtime exception");
+
+        return Product.builder()
+                .id(100)
+                .name("Python programming")
+                .price(29.0)
+                .stock(8)
+                .build();
+    }
 }

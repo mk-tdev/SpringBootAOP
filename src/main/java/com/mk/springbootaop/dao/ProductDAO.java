@@ -9,4 +9,6 @@ public interface ProductDAO {
     void getProduct();
     Product getProductDetail();
     Product getProductDetail(Integer id);
+
+    Product getSampleProduct();
 }
